@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import { Bell, Settings, HelpCircle, Menu, BarChart, Brain, X, LayoutDashboard } from "lucide-react";
+import { Brain, Menu, X, LayoutDashboard, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AICoPilotModule from "./AICoPilotModule";
 
 interface HeaderProps {
   title?: string;
   icon?: React.ReactNode;
-  notificationCount?: number;
   onToggleSidebar?: () => void;
 }
 
 const Header = ({
   title = "Mission Overview",
   icon = <LayoutDashboard className="h-5 w-5 text-blue-400" />,
-  notificationCount = 3,
   onToggleSidebar,
 }: HeaderProps) => {
   const [showAICopilot, setShowAICopilot] = useState(false);
@@ -36,43 +34,24 @@ const Header = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           <Button
             variant="ghost"
-            size="icon"
-            className="text-gray-400 hover:text-white hover:bg-gray-800"
+            className="text-gray-400 hover:text-white hover:bg-gray-800 flex items-center gap-2"
             onClick={() => setShowAICopilot(!showAICopilot)}
           >
             <Brain className="h-5 w-5 text-purple-400" />
+            <span className="text-sm">Copilot</span>
             {showAICopilot && (
               <span className="absolute top-1 right-1 h-2 w-2 bg-purple-500 rounded-full"></span>
             )}
           </Button>
           <Button
             variant="ghost"
-            size="icon"
-            className="text-gray-400 hover:text-white hover:bg-gray-800"
+            className="text-gray-400 hover:text-white hover:bg-gray-800 flex items-center gap-2"
           >
-            <Bell className="h-5 w-5" />
-            {notificationCount > 0 && (
-              <span className="absolute top-1 right-1 h-4 w-4 text-xs flex items-center justify-center bg-red-500 text-white rounded-full">
-                {notificationCount}
-              </span>
-            )}
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-gray-400 hover:text-white hover:bg-gray-800"
-          >
-            <HelpCircle className="h-5 w-5" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-gray-400 hover:text-white hover:bg-gray-800"
-          >
-            <BarChart className="h-5 w-5" />
+            <User className="h-5 w-5" />
+            <span className="text-sm">Mission Admin</span>
           </Button>
         </div>
       </header>
