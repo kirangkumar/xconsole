@@ -12,13 +12,23 @@ import {
   Server,
   LineChart,
   SatelliteIcon,
+  Menu,
+  ChevronRight,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface SidebarProps {
   isCollapsed: boolean;
+  onToggleSidebar: () => void;
 }
 
-const Sidebar = ({ isCollapsed }: SidebarProps) => {
+const Sidebar = ({ isCollapsed, onToggleSidebar }: SidebarProps) => {
   const location = useLocation();
 
   const navigationItems = [
@@ -92,42 +102,39 @@ const Sidebar = ({ isCollapsed }: SidebarProps) => {
     >
       {/* Logo Section */}
       <div className={cn(
-        "flex items-center p-4 border-b border-gray-800",
+        "flex items-center h-16 p-4 w-16",
         isCollapsed ? "justify-center" : "px-4"
       )}>
         <div className="flex items-center">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8 text-blue-500"
-          >
-            <path
-              d="M12 2L2 7L12 12L22 7L12 2Z"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M2 17L12 22L22 17"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M2 12L12 17L22 12"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          {!isCollapsed && (
-            <span className="ml-3 text-xl font-semibold text-white">Quanmo</span>
+          {isCollapsed ? (
+            <img src="/logo.png" alt="Logo" className="h-8 w-8 brightness-120 " />
+          ) : (
+            <>
+              <img src="/logo.png" alt="Q" className="h-8 w-8" />
+              <span className="ml-3 text-2xl font-bold bg-gradient-to-l from-cyan-400 to-blue-500 text-transparent bg-clip-text">Quanmo</span>
+            </>
           )}
         </div>
+      </div>
+      {/* Toggle Button */}
+      <div className={cn(
+        "absolute top-12",
+        isCollapsed ? "left-11" : "left-[208px]"
+      )}>
+        <Button
+          variant="ghost"
+          size="sm"
+          className={cn(
+            "px-2 text-gray-400 hover:text-white hover:bg-transparent",
+            "flex items-center justify-center"
+          )}
+          onClick={onToggleSidebar}
+        >
+          <ChevronRight className={cn(
+            "h-6 w-6 transition-transform bg-gray-600",
+            !isCollapsed && "rotate-180"
+          )} />
+        </Button>
       </div>
 
       <nav className="flex-1 px-2 py-3">
@@ -142,10 +149,25 @@ const Sidebar = ({ isCollapsed }: SidebarProps) => {
                 : "text-gray-400 hover:text-gray-300 hover:bg-gray-800"
             )}
           >
-            <div className="flex items-center">
-              {item.icon}
-              {!isCollapsed && <span className="ml-3">{item.name}</span>}
-            </div>
+            {isCollapsed ? (
+              <TooltipProvider delayDuration={100}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="flex items-center">
+                      {item.icon}
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent side="right" sideOffset={10}>
+                    <p>{item.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            ) : (
+              <div className="flex items-center">
+                {item.icon}
+                <span className="ml-3">{item.name}</span>
+              </div>
+            )}
             {item.badge && (
               <span className={cn(
                 "flex items-center justify-center rounded-full bg-red-500 text-white text-xs",

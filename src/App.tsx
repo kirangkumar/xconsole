@@ -81,13 +81,16 @@ function App() {
 
   return (
     <div className="flex h-screen bg-[#0B1120] text-white overflow-hidden">
-      <Sidebar isCollapsed={isSidebarCollapsed} />
+      <Sidebar 
+        isCollapsed={isSidebarCollapsed} 
+        onToggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)} 
+      />
       <div className="flex-1 flex flex-col">
         <div className={`transition-[margin] duration-300 ${isSidebarCollapsed ? "ml-[60px]" : "ml-[240px]"}`}>
           <Header 
             title={headerProps.title}
             icon={headerProps.icon}
-            onToggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+            sidebarCollapsed={isSidebarCollapsed}
           />
         </div>
         <Suspense fallback={
