@@ -29,7 +29,7 @@ const Header = ({
         <div className="flex items-center gap-4">
           <Button
             variant="ghost"
-            className="text-gray-400 hover:text-white hover:bg-gray-800 min-w-[100px]"
+            className="text-gray-400 hover:text-white hover:bg-gray-800 min-w-[100px] gap-2"
             onClick={() => setShowAICopilot(!showAICopilot)}
           >
             <Brain className="h-5 w-5 text-purple-400" />

@@ -125,7 +125,7 @@ const Sidebar = ({ isCollapsed, onToggleSidebar }: SidebarProps) => {
           variant="ghost"
           size="sm"
           className={cn(
-            "px-2 text-gray-400 hover:text-white hover:bg-transparent",
+            "px-2 text-gray-200 hover:text-white hover:bg-transparent",
             "flex items-center justify-center"
           )}
           onClick={onToggleSidebar}

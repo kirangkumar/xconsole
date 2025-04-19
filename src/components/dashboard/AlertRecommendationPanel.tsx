@@ -50,18 +50,46 @@ interface AlertRecommendationPanelProps {
 
 const AlertRecommendationPanel = ({
   alerts = [
-    // {
-    //   id: "alert-6",
-    //   title: "Imaging Opportunity for AOI-2",
-    //   description:
-    //     "Optimal imaging conditions for AOI-2 available in next pass.",
-    //   priority: "opportunity",
-    //   timestamp: "2023-06-15T14:25:00Z",
-    //   satellite: "Satellite-6",
-    //   recommendation:
-    //     "Schedule high-resolution imaging of AOI-2 during next orbital pass at 15:10 UTC.",
-    //   actions: ["implement", "dismiss"],
-    // },
+    {
+      id: "alert-12",
+      title: "High Calibration Drift - SAR",
+      description: "Significant calibration drift detected in SAR instrument.",
+      priority: "critical",
+      timestamp: "2023-06-15T14:35:00Z",
+      satellite: "Satellite-8",
+      recommendation: "Recommend skipping downlink due to high calibration drift. Data quality will be severely compromised. Schedule recalibration sequence.",
+      actions: ["implement", "dismiss", "snooze"],
+    },
+    {
+      id: "alert-11",
+      title: "Cloud Coverage Alert",
+      description: "80% cloud coverage detected in AOI-5 capture from Satellite-4.",
+      priority: "warning",
+      timestamp: "2023-06-15T14:33:00Z",
+      satellite: "Satellite-4",
+      recommendation: "Consider canceling downlink to save bandwidth. Image quality significantly affected by cloud coverage.",
+      actions: ["implement", "dismiss", "snooze"],
+    },
+    {
+      id: "alert-10",
+      title: "Missed Capture Recovery",
+      description: "Satellite-3 missed AOI capture. Alternative capture available via Satellite-6 at 15:45 UTC.",
+      priority: "warning",
+      timestamp: "2023-06-15T14:32:00Z",
+      satellite: "Satellite-6",
+      recommendation: "Schedule backup capture using Satellite-6's next pass at 15:45 UTC for optimal coverage of the missed AOI.",
+      actions: ["implement", "dismiss"],
+    },
+    {
+      id: "alert-9",
+      title: "Ship Movement Alert",
+      description: "Target ship detected approximately 5000km away from the planned capture area.",
+      priority: "warning",
+      timestamp: "2023-06-15T14:30:00Z",
+      satellite: "Satellite-4",
+      recommendation: "Recommend canceling the scheduled capture as it will only show open ocean. Consider rescheduling when ship is in the area of interest.",
+      actions: ["implement", "dismiss", "snooze"],
+    },
     {
       id: "alert-2",
       title: "Downlink Opportunity",
@@ -86,18 +114,18 @@ const AlertRecommendationPanel = ({
         "Reduce power to non-essential systems and rotate satellite to reduce solar exposure.",
       actions: ["implement", "dismiss", "snooze"],
     },
-    // {
-    //   id: "alert-5",
-    //   title: "Imaging Opportunity",
-    //   description:
-    //     "AOI-1 can be captured with better resolution using Satellite-5.",
-    //   priority: "opportunity",
-    //   timestamp: "2023-06-15T14:05:00Z",
-    //   satellite: "Satellite-5",
-    //   recommendation:
-    //     "Redirect imaging task from Satellite-1 to Satellite-5 for next pass.",
-    //   actions: ["implement", "dismiss"],
-    // },
+    {
+      id: "alert-5",
+      title: "Imaging Opportunity",
+      description:
+        "AOI-1 can be captured with better resolution using Satellite-5.",
+      priority: "opportunity",
+      timestamp: "2023-06-15T14:05:00Z",
+      satellite: "Satellite-5",
+      recommendation:
+        "Redirect imaging task from Satellite-1 to Satellite-5 for next pass.",
+      actions: ["implement", "dismiss"],
+    },
     {
       id: "alert-4",
       title: "Buffer Capacity Warning",
