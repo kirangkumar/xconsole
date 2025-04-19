@@ -575,13 +575,13 @@ const PredictiveHealthMonitoring = ({
         <TabsList className="grid grid-cols-2 w-full max-w-md mb-4 bg-gray-900">
           <TabsTrigger
             value="anomalies"
-            className="data-[state=active]:bg-gray-800"
+            className="data-[state=active]:bg-gray-200"
           >
             Anomaly Detection
           </TabsTrigger>
           <TabsTrigger
             value="metrics"
-            className="data-[state=active]:bg-gray-800"
+            className="data-[state=active]:bg-gray-200"
           >
             Health Metrics
           </TabsTrigger>
